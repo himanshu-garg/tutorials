@@ -29,14 +29,16 @@ Suppose, the extracted extjs sdk is at ~/extjs-sdk/ and we will create an applic
 
 3. ~/sample/app/ is the main folder that contains all the main code that we will edit/add to create an application.
 
-4. ```
+4. See "app" structure
+    ```
     ~/sample-app/app:
     Application.js  model  Readme.md  store  view
     ```
-    - Application.js is the start point that defines main Application
-    - store contains the data for views.
-    - model contains the definition for store.
-    - view contains the main components to be displayed.
+
+    1. Application.js is the start point that defines main Application
+    2. store contains the data for views.
+    3. model contains the definition for store.
+    4. view contains the main components to be displayed.
 
 5. Since, we have to write from scratch, lets remove all the existing files.
     ```
@@ -74,7 +76,7 @@ Create a file `~/sample-app/app/view/main/Main.js`
         }
     });
     ```
-Here, we have defined a view called "Main" with columns and store as "employees" along with "row select" event listener.
+    Here, we have defined a view called "Main" with columns and store as "employees" along with "row select" event listener.
 
 7. Lets define data in store "employees".  
 Create a file `~/sample-app/app/store/main/Employees.js`
@@ -97,7 +99,7 @@ Create a file `~/sample-app/app/store/main/Employees.js`
         }
     });
     ```
-Here, we have saved data in memory.  There are methods to fetch data from external urls using Ajax calls.
+    Here, we have saved data in memory.  There are methods to fetch data from external urls using Ajax calls.
 
 8. Now, define a controller that will take action based on the row click event.  Create a file `~/sample-app/app/view/main/MainController.js`
     ```
@@ -111,7 +113,7 @@ Here, we have saved data in memory.  There are methods to fetch data from extern
         }
     });
     ```
-Here, on row click, it will show a confirmation dialog box.
+    Here, on row click, it will show a confirmation dialog box.
 
 9. Now, open http://localhost:1841/ and see a table.  Click on any row and you will see a confirmation dialog box.
 

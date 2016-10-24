@@ -11,21 +11,21 @@ Here we will build a small application from scratch.
 Suppose, the extracted extjs sdk is at ~/extjs-sdk/ and we will create an application under ~/sample-app/
 
 1. Generate application using sencha cmd.
-```
-cd ~/sample-app/
-sencha -sdk ~/extjs-sdk/ generate app -classic SampleApp ./
-```
-This will generate the complete application structure
-```
-app     app.json       bootstrap.js    build      ext         overrides  Readme.md  sass
-app.js  bootstrap.css  bootstrap.json  build.xml  index.html  packages   resources  workspace.json
-```
+    ```
+    cd ~/sample-app/
+    sencha -sdk ~/extjs-sdk/ generate app -classic SampleApp ./
+    ```
+    This will generate the complete application structure
+    ```
+    app     app.json       bootstrap.js    build      ext         overrides  Readme.md  sass
+    app.js  bootstrap.css  bootstrap.json  build.xml  index.html  packages   resources  workspace.json
+    ```
 
 2. Run a localhost server using `sencha app watch`
-```
-sencha app watch
-```
-This will start a local sever on http://localhost:1841 and listen to changes done in code.  Access it and you will see a sample application running.
+    ```
+    sencha app watch
+    ```
+    This will start a local sever on http://localhost:1841 and listen to changes done in code.  Access it and you will see a sample application running.
 
 3. ~/sample/app/ is the main folder that contains all the main code that we will edit/add to create an application.
 
@@ -39,78 +39,78 @@ This will start a local sever on http://localhost:1841 and listen to changes don
     - view contains the main components to be displayed.
 
 5. Since, we have to write from scratch, lets remove all the existing files.
-```
-rm -rf ~/sample-app/app/view/*
-rm -rf ~/sample-app/app/store/*
-rm -rf ~/sample-app/app/model/*
-```
+    ```
+    rm -rf ~/sample-app/app/view/*
+    rm -rf ~/sample-app/app/store/*
+    rm -rf ~/sample-app/app/model/*
+    ```
 
 6. Lets create a table (called grid in extjs terms) with a row click event.
 Create a file `~/sample-app/app/view/main/Main.js`
-```
-Ext.define('SampleApp.view.main.Main', {
-    extend: 'Ext.grid.Panel',
-    xtype: 'app-main',
+    ```
+    Ext.define('SampleApp.view.main.Main', {
+        extend: 'Ext.grid.Panel',
+        xtype: 'app-main',
 
-    requires: [
-        'Ext.plugin.Viewport',
-        'SampleApp.store.main.Employees',
-        'SampleApp.view.main.MainController'
-    ],
+        requires: [
+            'Ext.plugin.Viewport',
+            'SampleApp.store.main.Employees',
+            'SampleApp.view.main.MainController'
+        ],
 
-    controller: 'main',
-    store: {
-        type: 'employees'
-    },
+        controller: 'main',
+        store: {
+            type: 'employees'
+        },
 
-    columns: [
-        {text: 'First Name', dataIndex: 'firstName', flex: 1},
-        {text: 'Last Name', dataIndex: 'lastName', flex: 1},
-        {text: 'Position', dataIndex: 'position', flex: 1}
-    ],
+        columns: [
+            {text: 'First Name', dataIndex: 'firstName', flex: 1},
+            {text: 'Last Name', dataIndex: 'lastName', flex: 1},
+            {text: 'Position', dataIndex: 'position', flex: 1}
+        ],
 
-    listeners: {
-        select: 'onSelect'
-    }
-});
-```
+        listeners: {
+            select: 'onSelect'
+        }
+    });
+    ```
 Here, we have defined a view called "Main" with columns and store as "employees" along with "row select" event listener.
 
 7. Lets define data in store "employees".  
 Create a file `~/sample-app/app/store/main/Employees.js`
-```
-Ext.define('SampleApp.store.main.Employees', {
-    extend: 'Ext.data.Store',
-    alias: 'store.employees',
+    ```
+    Ext.define('SampleApp.store.main.Employees', {
+        extend: 'Ext.data.Store',
+        alias: 'store.employees',
 
-    fields: ['firstName', 'lastName', 'position'],
-    data: [
-        {firstName: 'Peter', lastName: 'Vill', position: 'Accountant'},
-        {firstName: 'John', lastName: 'P.', position: 'Admin'},
-        {firstName: 'Sarah', lastName: 'Williams', position: 'HR'},
-        {firstName: 'Riki', lastName: 'John', position: 'Admin'},
-        {firstName: 'Neil', lastName: 'Radar', position: 'Tech Lead'}
-    ],
+        fields: ['firstName', 'lastName', 'position'],
+        data: [
+            {firstName: 'Peter', lastName: 'Vill', position: 'Accountant'},
+            {firstName: 'John', lastName: 'P.', position: 'Admin'},
+            {firstName: 'Sarah', lastName: 'Williams', position: 'HR'},
+            {firstName: 'Riki', lastName: 'John', position: 'Admin'},
+            {firstName: 'Neil', lastName: 'Radar', position: 'Tech Lead'}
+        ],
 
-    proxy: {
-        type: 'memory'
-    }
-});
-```
+        proxy: {
+            type: 'memory'
+        }
+    });
+    ```
 Here, we have saved data in memory.  There are methods to fetch data from external urls using Ajax calls.
 
 8. Now, define a controller that will take action based on the row click event.  Create a file `~/sample-app/app/view/main/MainController.js`
-```
-Ext.define('SampleApp.view.main.MainController', {
-    extend: 'Ext.app.ViewController',
+    ```
+    Ext.define('SampleApp.view.main.MainController', {
+        extend: 'Ext.app.ViewController',
 
-    alias: 'controller.main',
+        alias: 'controller.main',
 
-    onSelect: function (sender, record) {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
-    }
-});
-```
+        onSelect: function (sender, record) {
+            Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+        }
+    });
+    ```
 Here, on row click, it will show a confirmation dialog box.
 
 9. Now, open http://localhost:1841/ and see a table.  Click on any row and you will see a confirmation dialog box.

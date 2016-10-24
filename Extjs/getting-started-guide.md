@@ -33,13 +33,12 @@ This will start a local sever on http://localhost:1841 and listen to changes don
     ~/sample-app/app:
     Application.js  model  Readme.md  store  view
     ```
-Here,
-    1. Application.js is the start point that defines main Application
-    2. store contains the data for views.
-    3. model contains the definition for store.
-    4. view contains the main components to be displayed.
+    - Application.js is the start point that defines main Application
+    - store contains the data for views.
+    - model contains the definition for store.
+    - view contains the main components to be displayed.
 
-5. Since, we have to write from scratch, lets remove all the existing files
+5. Since, we have to write from scratch, lets remove all the existing files.
 ```
 rm -rf ~/sample-app/app/view/*
 rm -rf ~/sample-app/app/store/*
